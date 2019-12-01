@@ -28,3 +28,17 @@ print(hannah);
 print2(jeongho);
 
 // #2. 객체 안에 함수 넣기
+
+const dog = {
+    name: "멍멍이",
+    sound: "멍멍!",
+    // 객체 안에 함수를 넣을땐 함수명을 선언하지 않아도 되며, 함수 내 this는 자신이 속해있는 객체를 가르킴.
+    // 화살표 함수로 넣을 시 this는 자신이 속해있는 객체를 가르키지 않음. arrow function은 this키워드를 redefine하기에!
+    say: function say() {
+        console.log(this.sound);
+    }
+};
+
+dog.say(); // 멍멍!
+
+// #3. Getter, Setter 함수 이해하기
