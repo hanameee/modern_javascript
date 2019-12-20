@@ -41,4 +41,14 @@ const dog = {
 
 dog.say(); // 멍멍!
 
-// #3. Getter, Setter 함수 이해하기
+// #3. Constructor Function - 대문자로 시작
+function Dog(name, sound) {
+    this.name = name;
+    this.sound = sound;
+    this.say = function say() {
+        console.log(this.sound);
+    };
+}
+
+let dog1 = new Dog("왈왈이", "왈왈!");
+dog1.say();

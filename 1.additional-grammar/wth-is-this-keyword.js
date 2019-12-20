@@ -19,7 +19,7 @@ class Person {
 
 let person = new Person("Hannah");
 
-person.printNameArrowFunction();
-person.printNameFunction();
+person.printNameArrowFunction(); // Arrow Function - Hannah
+person.printNameFunction(); // Normal Function -
 
 console.log("hi");
