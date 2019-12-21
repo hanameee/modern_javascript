@@ -49,6 +49,5 @@ function Dog(name, sound) {
         console.log(this.sound);
     };
 }
-
 let dog1 = new Dog("왈왈이", "왈왈!");
 dog1.say();
