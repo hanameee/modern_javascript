@@ -11,12 +11,77 @@ Ajax는 자바스크립트를 이용해서 **비동기적(Asynchronous)**으로 
 
 
 ## 2. XMLHttpRequest
+브라우저는 **[XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) 객체**를 이용하여 Ajax 요청을 생성하고 전송한다. 서버가 브라우저의 요청에 대해 응답을 반환하면 같은 XMLHttpRequest 객체가 그 결과를 처리한다.
 
-[공식 문서](https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest)
+XMLHttpRequest 는 JavaScript를 통해 우리가 서버로 부터 다양한 리소스(e.g. images, text, JSON, even HTML snippets)를 가져오는 요청을 만들어 주며, 요청에 대한 응답을 이용한 DOM 조작을 통해 전체 페이지를 불러오지 않고도 **필요한 부분만을 업데이트** 할 수 있다.
 
-XMLHttpRequest (=**XHR**) API는 매우 유용한 JavaScript 오브젝트로, JavaScript를 통해 우리가 서버로 부터 다양한 리소스(e.g. images, text, JSON, even HTML snippets)를 가져오는 요청을 만들어 준다.
+### 2.1) Ajax Request
 
-즉, 전체 페이지를 불러오지 않고도 **필요한 부분만을 업데이트** 할 수 있다.
+Ajax 요청처리의 예는 다음과 같다.
+
+```js
+// XMLHttpRequest 객체 (요청) 생성
+const xhr = new XMLHttpRequest();
+// 비동기 방식으로 request 오픈 : (method, url[, async]) 의 파라미터를 받음
+xhr.open("POST","/users")
+// HTTP Request Header의 값 설정
+xhr.setRequestHeader('Content-type', 'application/json');
+const data = { id: 3, title: 'JavaScript', author: 'Park', price: 5000};
+// send에는 request body에 담아 전송할 데이터를 전달할 수 있다
+// 요청 method가 GET인 경우, send 메소드의 인수는 무시되고 request body는 null로 설정된다.
+xhr.send(JSON.stringify(data));
+```
+
+### 2.2) Ajax Response
+
+Ajax 응답처리의 예는 다음과 같다.
+
+```js
+// XMLHttpRequest 객체 (요청) 생성
+const xhr = new XMLHttpRequest();
+// XMLHttpRequest.readyState 프로퍼티가 변경(이벤트 발생)될 때마다 콜백함수(이벤트 핸들러)를 호출한다.
+xhr.onreadystatechange = function(e) {
+  // readyStates는 XMLHttpRequest의 상태(state)를 반환
+  // readyState: 4 => DONE(서버 응답 완료)
+  if(xhr.readyState != XMLHttpRequest.DONE) return;
+  // status는 response 상태 코드를 반환 : 200 => 정상 응답
+  if(xhr.status === 200){
+    // XMLHttpRequest.responseText에는 서버가 전송한 데이터가 담겨 있다
+    consol.log(xhr.responseText);
+  } else {
+    console.log('Error!');
+  }
+};
+```
+
+#### readyState
+
+readXMLHttpRequest 객체의 `readyState` 프로퍼티를 통해 response가 클라이언트에 도달했는지를 추적할 수 있다.
+
+`readyState` 의 값은 아래와 같다.
+
+| Value | State            | Description                                           |
+| :---: | :--------------- | :---------------------------------------------------- |
+|   0   | UNSENT           | XMLHttpRequest.open() 메소드 호출 이전                |
+|   1   | OPENED           | XMLHttpRequest.open() 메소드 호출 완료                |
+|   2   | HEADERS_RECEIVED | XMLHttpRequest.send() 메소드 호출 완료                |
+|   3   | LOADING          | 서버 응답 중(XMLHttpRequest.responseText 미완성 상태) |
+|   4   | DONE             | 서버 응답 완료                                        |
+#### status
+
+readXMLHttpRequest 객체의 `status` 프로퍼티를 통해 request 에 대한 response 의 상태를 알 수 있다. 상태는 HTTP status code 값으로 리턴된다.
+
+각 status에 대한 내용은 [공식 문서](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 참고.
+
+Status 값은 5가지 범위로 분류된다.
+
+1. Informational responses (`100`–`199`)
+2. Successful responses (`200`–`299`)
+3. Redirects (`300`–`399`)
+4. Client errors (`400`–`499`)
+5. Server errors (`500`–`599`)
+
+따라서 `(xhr.status >= 200 && xhr.status < 400)` 는 정상 응답을 의미한다고 볼 수 있다.
 
 [용례]
 

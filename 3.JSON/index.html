@@ -26,12 +26,15 @@
             // 3. request 객체의 open 메서드를 사용해 요청을 연다
             // 이때, 필수 파라미터 2개는 (1)HTTP method (2)요청하는 URL 이렇게 2개이다
             request.open("GET", requestURL);
-            // 4. responseType을 json으로 정의하고, send 메서드를 사용해 요청을 전송한다
+            // 4. responseType을 json으로 정의하고, send 메서드를 사용해 요청을 전송한다.
+            // JSON response 를 JS object 로 바로 바꾸도록 XHR request 를 세팅해주는 것이다.
+            // 이게 없다면 서버로부터 브라우저로 전송된 JSON 데이터는 문자열이다. 그럼 JSON.parse를 해서 JS객체 형태로 만들어줘야 한다.
             request.responseType = "json";
             request.send();
             // 5. onload는 XHR 상호작용이 성공적으로 끝났을때 called 되는 function이다 - request.response를 보장한다
             request.onload = function() {
-                // 요청에 대한 응답인 json 데이터를 JS 객체 형태로 변환해 superHeroes 변수에 저장한다
+                // 이 데이터를 JS 객체 형태로 변환해 superHeroes 변수에 저장한다
+                console.log(typeof request.response);
                 var superHeroes = request.response;
                 // for (let prop in superHeroes) {
                 //     console.log(`${prop} : ${superHeroes[prop]}`);
