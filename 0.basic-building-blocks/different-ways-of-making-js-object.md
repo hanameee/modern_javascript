@@ -352,4 +352,3 @@ console.log(iterator1.next().value); // Array [0,'a']
 console.log(iterator1.next().value); // Array [1,'b']
 console.log(iterator1.next().value); // Array [2,'c']
 ```
-

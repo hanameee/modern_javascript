@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Our superheroes</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Faster+One"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <header></header>
+
+        <section></section>
+
+        <script>
+            const header = document.querySelector("header");
+            const section = document.querySelector("section");
+            // 1. 우리가 가져오고 싶은 JSON의 URL을 변수에 담는다
+            var requestURL =
+                "https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json";
+            // 2. XMLHttpRequest 생성자 함수를 사용해 새로운 request 객체 인스턴스를 만든다
+            var request = new XMLHttpRequest();
+            // 3. request 객체의 open 메서드를 사용해 요청을 연다
+            // 이때, 필수 파라미터 2개는 (1)HTTP method (2)요청하는 URL 이렇게 2개이다
+            request.open("GET", requestURL);
+            // 4. responseType을 json으로 정의하고, send 메서드를 사용해 요청을 전송한다
+            request.responseType = "json";
+            request.send();
+            // 5. onload는 XHR 상호작용이 성공적으로 끝났을때 called 되는 function이다 - request.response를 보장한다
+            request.onload = function() {
+                // 요청에 대한 응답인 json 데이터를 JS 객체 형태로 변환해 superHeroes 변수에 저장한다
+                var superHeroes = request.response;
+                // for (let prop in superHeroes) {
+                //     console.log(`${prop} : ${superHeroes[prop]}`);
+                // }
+                populateHeader(superHeroes);
+                showHeroes(superHeroes);
+            };
+            function populateHeader(jsonObj) {
+                var myH1 = document.createElement("h1");
+                myH1.textContent = jsonObj["squadName"];
+                header.appendChild(myH1);
+                var myPara = document.createElement("p");
+                myPara.textContent =
+                    "Hometown: " +
+                    jsonObj["homeTown"] +
+                    " // Formed: " +
+                    jsonObj["formed"];
+                header.appendChild(myPara);
+            }
+
+            function showHeroes(jsonObj) {
+                var heroes = jsonObj["members"];
+                for (let i = 0; i < heroes.length; i++) {
+                    let myArticle = document.createElement("article");
+                    let myH2 = document.createElement("h2");
+                    let myPara1 = document.createElement("p");
+                    let myPara2 = document.createElement("p");
+                    let myPara3 = document.createElement("p");
+                    let myList = document.createElement("ul");
+                    myH2.textContent = heroes[i].name;
+                    myPara1.textContent =
+                        "Secret identity: " + heroes[i].secretIdentity;
+                    myPara2.textContent = "Age: " + heroes[i].age;
+                    myPara3.textContent = "Superpowers:";
+                    let superPowers = heroes[i].powers;
+                    for (let j = 0; j < superPowers.length; j++) {
+                        var listItem = document.createElement("li");
+                        listItem.textContent = superPowers[j];
+                        myList.appendChild(listItem);
+                    }
+                    myArticle.appendChild(myH2);
+                    myArticle.appendChild(myPara1);
+                    myArticle.appendChild(myPara2);
+                    myArticle.appendChild(myPara3);
+                    myArticle.appendChild(myList);
+
+                    section.appendChild(myArticle);
+                }
+            }
+        </script>
+    </body>
+</html>
