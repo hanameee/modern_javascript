@@ -144,3 +144,58 @@ Status 값은 5가지 범위로 분류된다.
 
 ```
 
+
+
+## 3. Fetch API
+
+[참고 링크](https://www.zerocho.com/category/HTML&DOM/post/595b4bc97cafe885540c0c1c)
+
+XHR 객체의 가독성이나 코드 복잡도를 개선하기 위해 나온 것이 Fetch API로, Fetch API는 request 후에 **Promise** 객체를 return 한다.
+
+Fetch 함수의 구조는 다음과 같다.
+
+```js
+fetch('주소',설정객체).then(콜백).catch(콜백);
+```
+
+- 주소 : 요청을 보낼 URL 입력
+- 설정객체 :  GET, POST 등의 메소드, 보낼 데이터 등
+- then : 응답 response 객체 받음
+- catch : 요청에 대한 에러 받음
+
+```js
+fetch("https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json").then((res) => {
+  // 성공을 알리는 HTTP 상태코드
+  if(res.status === 200 || res.status === 201) {
+    res.text().then(text => console.log(text));
+    // 실패를 알리는 HTTP 상태코드
+  } else {
+    console.error(res.statusText);
+  }
+}).catch(err => console.error(error));
+```
+fetch 함수는 promise를 리턴한다. 체이닝 방식으로 후속 처리 메소드인 then과 catch 가 호출되고 있는 것을 볼 수 있다.
+
+then 함수는 응답으로 비동기 처리의 결과인 **Response 객체**를 받는데, Response 객체의 구조는 아래와 같다.
+ ![image-20191229031716847](../../REACT_study/Udemy/images/image-20191229031716847.png)
+
+Response 객체는 응답에 대한 정보를 담고 있으며, 객체 안의 `status` 와 `statusText` 등은 성공 여부를 판가름할 때 쓰면 된다.
+
+`headers`는 응답에 대한 헤더 정보를 담고 있는 Headers 객체이다.
+
+`body`는 응답 내용인데 Stream으로 되어 있어 쉽게 값을 볼 수 없다. 대신, Response 객체에서 값을 볼 수 있게 해주는 메소드 5가지가 존재한다.
+
+- text
+- arrayBuffer
+- blob
+- json
+- formData
+
+위 메소드들은 모두 Promise를 return한다. 그렇기에 위의 예시 코드에서도
+
+`res.text().then(text => console.log(text));`
+
+**text** 메소드가 Promise를 return하기에 다시 한번 후속 처리 메소드 then으로 text를 받은 것을 볼 수 있다.
+
+만약 **json** 데이터가 응답으로 오면 `res.json().then(json => console.log(json));` 이렇게 받으면 되고, **blob**이나 **arrayBuffer**는 이미지나 파일같은 데이터일 때 사용하면 된다.,
+
