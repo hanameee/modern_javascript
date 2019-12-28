@@ -71,3 +71,25 @@ const promise = new Promise((resolve, reject) => {
 
 ```
 
+위 예제처럼 비동기 함수 내에서 Promise 객체를 생성하고 그 내부에서 비동기 처리를 구현한다.
+
+이때 비동기 처리에 성공하면 **resolve** 메소드를 호출하고, resolve 메소드의 인자로는 **비동기 처리 결과**를 전달한다. 이 **처리 결과**는 **Promise 객체의 후속 처리 메소드로 전달**된다.
+
+만약 비동기 처리에 실패하면 **reject** 메소드를 호출한다. 이때 reject 메소드의 인자로 에러 메시지를 전달한다. 이 **에러 메시지**는 **Promise 객체의 후속 처리 메소드로 전달**된다.
+
+#### Promise 의 후속 처리 메소드 (then, catch)
+
+Promise로 구현된 **비동기 함수**는 **Promise 객체를 반환**하여야 한다.
+
+Promise로 구현된 비동기 함수를 호출하는 측(promise consumer)에서는 Promise 객체의 후속 처리 메소드(then, catch)를 통해 비동기 처리 결과 또는 에러 메시지를 전달받아 처리한다.
+
+Promise 객체는 상태를 가지는데 - 이 상태에 따라 후속 처리 메소드를 체이닝 방식으로 호출한다. Promise의 후속 처리 메소드는 아래와 같다.
+
+- then
+
+  then 메소드는 두 개의 콜백 함수를 인자로 전달 받는다. 첫 번째 콜백 함수는 성공(fulfilled, resolve 함수가 호출된 상태) 시 호출되고 두 번째 함수는 실패(rejected, reject 함수가 호출된 상태) 시 호출된다. **then 메소드는 Promise를 반환한다.**
+
+- catch
+
+  예외(비동기 처리에서 발생한 에러와 then 메소드에서 발생한 에러)가 발생하면 호출된다. **catch 메소드는 Promise를 반환한다.**
+
