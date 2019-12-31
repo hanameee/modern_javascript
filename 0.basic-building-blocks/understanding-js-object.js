@@ -51,3 +51,14 @@ function Dog(name, sound) {
 }
 let dog1 = new Dog("왈왈이", "왈왈!");
 dog1.say();
+
+function Person(age, name) {
+    this.age = age;
+    this.name = name;
+    this.whatsyourname = function whatsyourname() {
+        console.log(`my name is ${this.name}`);
+    };
+}
+
+let Hannah = new Person(25, "Hannah");
+Hannah.whatsyourname();
