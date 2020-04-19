@@ -42,11 +42,11 @@ JSON 배열은 대괄호([])로 표현한다.
 ## JS와 JSON
 
 자바스트립트는 JSON 전역 객체를 통해 문자열과 JSON 객체의 상호변환을 지원한다.
-JSON 데이터를 처리하기 위해 지원하는 메소드들은 다음과 같다. 
+JSON 데이터를 처리하기 위해 지원하는 메소드들은 다음과 같다.
 
-- JSON.stringify()
-- JSON.parse()
-- toJSON()
+-   JSON.stringify()
+-   JSON.parse()
+-   toJSON()
 
 ### 1. JSON.stringfy()
 
@@ -58,12 +58,13 @@ JSON.stringify() 메소드는 **인수로 전달받은 자바스크립트 객체
 
 ```js
 // 자바스크립트 객체
-var dog = {name: "식빵", family: "웰시코기", age: 1, weight: 2.14}; 
+var dog = { name: "식빵", family: "웰시코기", age: 1, weight: 2.14 };
 // 자바스크립트 객체를 문자열로 변환
 var data = JSON.stringify(dog);
 ```
 
 ### 2. JSON.parse()
+
 JSON.parse() 메소드는 JSON.stringify() 메소드와는 반대로 **인수로 전달받은 문자열**을 **자바스크립트 객체로 변환**하여 반환한다.
 
 **서버로부터 브라우저로 전송된 JSON 데이터는 문자열**이다. 이 문자열을 객체로서 사용하려면 객체화하여야 하는데 이를 역직렬화(Deserializing)이라 한다. 이를 위해 내장 객체 JSON의 static 메소드인 JSON.parse를 사용하게 된다.
@@ -74,7 +75,7 @@ JSON.parse() 메소드는 JSON.stringify() 메소드와는 반대로 **인수로
 // JSON 형식의 문자열
 var data = '{"name": "식빵", "family": "웰시코기", "age": 1, "weight": 2.14}';
 // JSON 형식의 문자열을 자바스크립트 객체로 변환
-var dog = JSON.parse(data); 
+var dog = JSON.parse(data);
 
 document.getElementById("json").innerHTML = dog + "<br>";
 

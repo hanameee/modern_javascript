@@ -242,14 +242,14 @@ dot notation 으로는 변수에 접근할 수 없음에 주의!
 
 ```js
 let person = {
-  'first-name': 'Hannah',
+  first_name: 'Hannah',
   last_name : 'Lee',
   gender: 'female',
-  foo: 'hahaha'
+  meaningless: 'hahaha'
 }
 
-delete person.foo;
-console.log(person.foo); // undefined
+delete person.meaningless;
+console.log(person.meaningless); // undefined
 ```
 
 ## 3.4 프로퍼티 순회
