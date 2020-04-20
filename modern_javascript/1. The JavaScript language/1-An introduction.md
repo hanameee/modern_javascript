@@ -1,4 +1,4 @@
-# Part 1. [An introduction](https://javascript.info/getting-started)
+# [An introduction](https://javascript.info/getting-started)
 
 ## 1.1) [An Introduction to JavaScript](https://javascript.info/intro)
 
