@@ -36,18 +36,16 @@
 | 2.17  | [JavaScript specials](https://javascript.info/javascript-specials) | 2020.04.20 |
 ### 3) [Code quality](https://javascript.info/getting-started)
 
-| index | 제목                                                         | 완료 날짜 |
-| ----- | ------------------------------------------------------------ | --------- |
-| 3.1   | [Debugging in Chrome](https://javascript.info/debugging-chrome) |           |
-| 3.2   | [Coding Style](https://javascript.info/coding-style)         |           |
-| 3.3   | [Comments](https://javascript.info/comments)                 |           |
-| 3.4   | [Ninja code](https://javascript.info/ninja-code)             |           |
-| 3.5   | [Automated testing with Mocha](https://javascript.info/testing-mocha) |           |
-| 3.6   | [Polyfills](https://javascript.info/polyfills)               |           |
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 3.1   | [Debugging in Chrome](https://javascript.info/debugging-chrome) | 2020.04.20 |
+| 3.2   | [Coding Style](https://javascript.info/coding-style)         | 2020.04.20 |
+| 3.3   | [Comments](https://javascript.info/comments)                 | 2020.04.20 |
+| 3.4   | [Ninja code](https://javascript.info/ninja-code)             | 2020.04.20 |
+| 3.5   | [Automated testing with Mocha](https://javascript.info/testing-mocha) | 2020.04.20 |
+| 3.6   | [Polyfills](https://javascript.info/polyfills)               | 2020.04.20 |
 
 ### 
-
-
 
 ## Part 2 - 브라우저: 문서, 이벤트, 인터페이스
 
