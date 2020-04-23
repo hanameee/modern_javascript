@@ -45,9 +45,65 @@
 | 3.5   | [Automated testing with Mocha](https://javascript.info/testing-mocha) | 2020.04.20 |
 | 3.6   | [Polyfills](https://javascript.info/polyfills)               | 2020.04.20 |
 
-### 
+### 4) [Objects: the basics](https://javascript.info/object-basics)
+
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 4.1   | [Objects](https://javascript.info/object)                    | 2020.04.20 |
+| 4.2   | [Garbage collection](https://javascript.info/garbage-collection) | 2020.04.20 |
+| 4.3   | [Symbol type](https://javascript.info/symbol)                | 2020.04.20 |
+| 4.4   | [Object methods, "this"](https://javascript.info/object-methods) | 2020.04.20 |
+| 4.5   | [Object to primitive conversion](https://javascript.info/object-toprimitive) | 2020.04.21 |
+| 4.6   | [Constructor, operator "new"](https://javascript.info/constructor-new) | 2020.04.22 |
+
+### 5) [Data types](https://javascript.info/data-types)
+
+| index | 제목                                                         | 완료 날짜 |
+| ----- | ------------------------------------------------------------ | --------- |
+| 5.1   | [Methods of primitives](https://javascript.info/primitives-methods) |           |
+| 5.2   | [Numbers](https://javascript.info/number)                    |           |
+| 5.3   | [Strings](https://javascript.info/string)                    |           |
+| 5.4   | [Arrays](https://javascript.info/array)                      |           |
+| 5.5   | [Array methods](https://javascript.info/array-methods)       |           |
+| 5.6   | [Iterables](https://javascript.info/iterable)                |           |
+| 5.7   | [Map and Set](https://javascript.info/map-set)               |           |
+| 5.8   | [WeakMap and WeakSet](https://javascript.info/weakmap-weakset) |           |
+| 5.9   | [Object.keys, values, entries](https://javascript.info/keys-values-entries) |           |
+| 5.10  | [Destructuring assignment](https://javascript.info/destructuring-assignment) |           |
+| 5.11  | [Date and time](https://javascript.info/date)                |           |
+| 5.12  | [JSON methods, toJSON](https://javascript.info/json)         |           |
+
+
+##
 
 ## Part 2 - 브라우저: 문서, 이벤트, 인터페이스
+
+###1) [Document](https://javascript.info/document)
+
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 1.1   | [Browser environment, specs](https://javascript.info/browser-environment) | 2020.04.22 |
+| 1.2   | [DOM tree](https://javascript.info/dom-nodes)                | 2020.04.22 |
+| 1.3   | [Walking the DOM](https://javascript.info/dom-navigation)    |            |
+| 1.4   | [Searching: getElement*, querySelector*](https://javascript.info/searching-elements-dom) |            |
+| 1.5   | [Node properties: type, tag and contents](https://javascript.info/basic-dom-node-properties) |            |
+| 1.6   | [Attributes and properties](https://javascript.info/dom-attributes-and-properties) |            |
+| 1.7   | [Modifying the document](https://javascript.info/modifying-document) |            |
+| 1.8   | [Styles and classes](https://javascript.info/styles-and-classes) |            |
+| 1.9   | [Element size and scrolling](https://javascript.info/size-and-scroll) |            |
+| 1.10  | [Window sizes and scrolling](https://javascript.info/size-and-scroll-window) |            |
+| 1.11  | [Coordinates](https://javascript.info/coordinates)           |            |
+
+###2) [Introduction to Events](https://javascript.info/events)
+
+| index | 제목                                                         | 완료 날짜 |
+| ----- | ------------------------------------------------------------ | --------- |
+| 2.1   | [Introduction to browser events](https://javascript.info/introduction-browser-events) |           |
+| 2.2   | [Bubbling and capturing](https://javascript.info/bubbling-and-capturing) |           |
+| 2.3   | [Event delegation](https://javascript.info/event-delegation) |           |
+| 2.4   | [Browser default actions](https://javascript.info/default-browser-action) |           |
+| 2.5   | [Dispatching custom events](https://javascript.info/dispatch-events) |           |
+
 
 
 
