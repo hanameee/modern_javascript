@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <ul>
+            <li>
+                Animals
+                <ul>
+                    <li>
+                        Mammals
+                        <ul>
+                            <li>Cows</li>
+                            <li>Donkeys</li>
+                            <li>Dogs</li>
+                            <li>Tigers</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Other
+                        <ul>
+                            <li>Snakes</li>
+                            <li>Birds</li>
+                            <li>Lizards</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Fishes
+                <ul>
+                    <li>
+                        Aquarium
+                        <ul>
+                            <li>Guppy</li>
+                            <li>Angelfish</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Sea
+                        <ul>
+                            <li>Sea trout</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <script>
+            // li를 죄다 가져온 뒤
+            let lis = document.querySelectorAll("li");
+            // li들에 대해서
+            for (let li of lis) {
+                // li 밑에 있는 후손 li들의 길이를 잰다
+                let descendantsCount = li.querySelectorAll("li").length;
+                if (!descendantsCount) continue;
+                // 자손이 있는 list 라면, 자식 요소인 text 노드의 data로 접근해 문자열을 더한다
+                li.firstChild.data += " [" + descendantsCount + "]";
+            }
+        </script>
+    </body>
+</html>

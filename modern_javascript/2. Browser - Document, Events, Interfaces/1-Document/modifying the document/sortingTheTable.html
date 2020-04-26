@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<table id="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John</td>
+            <td>Smith</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Pete</td>
+            <td>Brown</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>Ann</td>
+            <td>Lee</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    // tBodies에서 rows를 받아온다 (<tr>)
+    // 첫번째 <td> 즉 이름 필드 (rowA.cells[0].innerHTML) 를 기준으로 정렬한다.
+    let sortedRows = Array.from(table.tBodies[0].rows).sort((rowA, rowB) =>
+        rowA.cells[0].innerHTML.localeCompare(rowB.cells[0].innerHTML)
+    );
+    // 기존 row element를 remove 할 필요 없다. 다시 삽입하면 그냥 새로운 자리를 찾아간다.
+    table.tBodies[0].append(...sortedRows);
+</script>

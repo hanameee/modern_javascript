@@ -1,0 +1,26 @@
+<ol id="elem">
+    <li>Hello</li>
+    <li>World</li>
+</ol>
+
+<script>
+    function clear(elem) {
+        while (elem.firstChild) {
+            elem.firstChild.remove();
+        }
+    }
+    function clear2(elem) {
+        elem.innerHTML = "";
+    }
+    clear(elem);
+</script>
+
+<!-- 
+  주의할 점
+  remove()는 지울때마다 elem.childNodes 컬렉션을 shift 한다.
+  따라서 아래의 코드는 모든 노드를 지우지 못한다
+  
+  for (let i =0; i<elem.childNodes.length; i++) {
+    elem.childNodes[i].remove();
+  }
+-->

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            td,
+            th {
+                border: 1px solid black;
+                padding: 3px;
+                text-align: center;
+            }
+
+            th {
+                font-weight: bold;
+                background-color: #e6e6e6;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="calendar"></div>
+
+        <script>
+            function createCalendar(elem, year, month) {
+                // JS에서 month 는 0부터 시작하기에 input-1을 해줘야 한다
+                let mon = month - 1;
+                // 해당 연도, 해당 월의 첫 번째 날짜를 반환한다.
+                let d = new Date(year, mon);
+                // 첫 번째 행은 헤더부분을 사용한다
+                let table =
+                    "<table><tr><th>MO</th><th>TU</th><th>WE</th><th>TH</th><th>FR</th><th>SA</th><th>SU</th></tr><tr>";
+                // 월요일을 0, 일요일을 6으로 수정한 getDay를 받아 그 숫자 만큼 첫 행의 빈 열을 만들어준다
+                for (let i = 0; i < getDay(d); i++) {
+                    table += "<td></td>";
+                }
+
+                // 빈 열이 만들어진 이후엔 실제 일 수가 적힌 달력을 만든다
+                // d에 하루씩 추가해 가면서 진행한다. d의 month가 입력된 month를 넘어서면 반복문을 종료한다.
+                while (d.getMonth() == mon) {
+                    table += "<td>" + d.getDate() + "</td>";
+                    // 월요일이 0, 일요일이 6이다.
+                    if (getDay(d) % 7 == 6) {
+                        // 일요일이면 줄바꿈한다
+                        table += "</tr><tr>";
+                    }
+
+                    d.setDate(d.getDate() + 1);
+                }
+
+                // 마지막 날이 월요일이란건? 일요일로 끝났다는 것. 마지막 날이 월요일이 아니라는 건 빈 칸을 채워줘야 한다는 것
+                if (getDay(d) != 0) {
+                    // 마지막 날이 화요일이면 6개, 일요일이면 1개를 채워주면 된다. 즉 7-i번 돌면 된다
+                    for (let i = getDay(d); i < 7; i++) {
+                        table += "<td></td>";
+                    }
+                }
+
+                // 테이블 닫기
+                table += "</tr></table>";
+                // innerHTML로 넣어주기
+                elem.innerHTML = table;
+            }
+
+            function getDay(date) {
+                // date.getDay() 는 일요일을 0, 토요일을 6으로 센다.
+                let day = date.getDay();
+                // 우리는 일요일을 7로 만들어준 뒤 1을 빼면 월요일을 0, 일요일을 6으로 만들 수 있다.
+                if (day == 0) day = 7;
+                return day - 1;
+            }
+
+            createCalendar(calendar, 2020, 4);
+        </script>
+    </body>
+</html>
