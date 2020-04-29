@@ -58,20 +58,20 @@
 
 ### 5) [Data types](https://javascript.info/data-types)
 
-| index | 제목                                                         | 완료 날짜 |
-| ----- | ------------------------------------------------------------ | --------- |
-| 5.1   | [Methods of primitives](https://javascript.info/primitives-methods) |           |
-| 5.2   | [Numbers](https://javascript.info/number)                    |           |
-| 5.3   | [Strings](https://javascript.info/string)                    |           |
-| 5.4   | [Arrays](https://javascript.info/array)                      |           |
-| 5.5   | [Array methods](https://javascript.info/array-methods)       |           |
-| 5.6   | [Iterables](https://javascript.info/iterable)                |           |
-| 5.7   | [Map and Set](https://javascript.info/map-set)               |           |
-| 5.8   | [WeakMap and WeakSet](https://javascript.info/weakmap-weakset) |           |
-| 5.9   | [Object.keys, values, entries](https://javascript.info/keys-values-entries) |           |
-| 5.10  | [Destructuring assignment](https://javascript.info/destructuring-assignment) |           |
-| 5.11  | [Date and time](https://javascript.info/date)                |           |
-| 5.12  | [JSON methods, toJSON](https://javascript.info/json)         |           |
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 5.1   | [Methods of primitives](https://javascript.info/primitives-methods) | 2020.04.29 |
+| 5.2   | [Numbers](https://javascript.info/number)                    |            |
+| 5.3   | [Strings](https://javascript.info/string)                    |            |
+| 5.4   | [Arrays](https://javascript.info/array)                      |            |
+| 5.5   | [Array methods](https://javascript.info/array-methods)       |            |
+| 5.6   | [Iterables](https://javascript.info/iterable)                |            |
+| 5.7   | [Map and Set](https://javascript.info/map-set)               |            |
+| 5.8   | [WeakMap and WeakSet](https://javascript.info/weakmap-weakset) |            |
+| 5.9   | [Object.keys, values, entries](https://javascript.info/keys-values-entries) |            |
+| 5.10  | [Destructuring assignment](https://javascript.info/destructuring-assignment) |            |
+| 5.11  | [Date and time](https://javascript.info/date)                |            |
+| 5.12  | [JSON methods, toJSON](https://javascript.info/json)         |            |
 
 
 ##
@@ -84,11 +84,11 @@
 | ----- | ------------------------------------------------------------ | ---------- |
 | 1.1   | [Browser environment, specs](https://javascript.info/browser-environment) | 2020.04.22 |
 | 1.2   | [DOM tree](https://javascript.info/dom-nodes)                | 2020.04.22 |
-| 1.3   | [Walking the DOM](https://javascript.info/dom-navigation)    |            |
-| 1.4   | [Searching: getElement*, querySelector*](https://javascript.info/searching-elements-dom) |            |
-| 1.5   | [Node properties: type, tag and contents](https://javascript.info/basic-dom-node-properties) |            |
-| 1.6   | [Attributes and properties](https://javascript.info/dom-attributes-and-properties) |            |
-| 1.7   | [Modifying the document](https://javascript.info/modifying-document) |            |
+| 1.3   | [Walking the DOM](https://javascript.info/dom-navigation)    | 2020.04.25 |
+| 1.4   | [Searching: getElement*, querySelector*](https://javascript.info/searching-elements-dom) | 2020.04.25 |
+| 1.5   | [Node properties: type, tag and contents](https://javascript.info/basic-dom-node-properties) | 2020.04.25 |
+| 1.6   | [Attributes and properties](https://javascript.info/dom-attributes-and-properties) | 2020.04.25 |
+| 1.7   | [Modifying the document](https://javascript.info/modifying-document) | 2020.04.25 |
 | 1.8   | [Styles and classes](https://javascript.info/styles-and-classes) |            |
 | 1.9   | [Element size and scrolling](https://javascript.info/size-and-scroll) |            |
 | 1.10  | [Window sizes and scrolling](https://javascript.info/size-and-scroll-window) |            |

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div data-widget-name="menu">Choose the genre</div>
+
+        <script>
+            // data-widget-name 이라는 속성을 가진 태그를 가져온다
+            let elem = document.querySelector("[data-widget-name]");
+            let widget_name = elem.dataset.widgetName;
+            let widget_name_value = elem.getAttribute("data-widget-name");
+            console.log(widget_name, widget_name_value);
+            /* your code */
+        </script>
+    </body>
+</html>
