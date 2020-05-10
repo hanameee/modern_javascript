@@ -1,0 +1,10 @@
+let styles = ["Jazz", "Blues"];
+console.log(styles);
+styles.push("Rock-n-Roll");
+console.log(styles);
+let mid_idx = Math.floor(styles.length / 2);
+styles[mid_idx] = "Classics";
+console.log(styles);
+console.log(styles.pop());
+styles.unshift("Rap", "Reggae");
+console.log(styles);
