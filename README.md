@@ -61,9 +61,9 @@
 | index | 제목                                                         | 완료 날짜  |
 | ----- | ------------------------------------------------------------ | ---------- |
 | 5.1   | [Methods of primitives](https://javascript.info/primitives-methods) | 2020.04.29 |
-| 5.2   | [Numbers](https://javascript.info/number)                    |            |
-| 5.3   | [Strings](https://javascript.info/string)                    |            |
-| 5.4   | [Arrays](https://javascript.info/array)                      |            |
+| 5.2   | [Numbers](https://javascript.info/number)                    | 2020.05.09 |
+| 5.3   | [Strings](https://javascript.info/string)                    | 2020.05.09 |
+| 5.4   | [Arrays](https://javascript.info/array)                      | 2020.05.10 |
 | 5.5   | [Array methods](https://javascript.info/array-methods)       |            |
 | 5.6   | [Iterables](https://javascript.info/iterable)                |            |
 | 5.7   | [Map and Set](https://javascript.info/map-set)               |            |
