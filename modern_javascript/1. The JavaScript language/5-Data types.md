@@ -178,7 +178,113 @@ for (let key of arr){
 
 ### 배열의 요소 추가와 제거
 
-`splice` : 배열에 요소 추가, 삭제, 교체가 모두 가능함.
+`splice` : 원본 배열을 수정하는 메서드. 배열에 요소 추가, 삭제, 교체를 할 수 있다.
+
+`slice` : 원본 배열을 수정하지 않으면서 서브 배열을 반환한다. `arr.slice()` 처럼 인수를 하나도 넘기지 않으면 원본 배열을 복사한다.
+
+`concat` : 배열들을 합쳐서 새로운 배열을 만들때, 기존 배열에 요소를 추가할 때
+
+`forEach` : 주어진 콜백함수를 배열 요소 각각에 대해 실행. 반환값은 무시된다. 파라미터로 index 값을 사용할 수 있다. 
+
+### 배열 탐색하기
+
+#### indexOf, includes
+
+문자열 인덱스와 하는 일이 동일하다. 다만, 아래 인덱스들은 요소를 찾을 때 완전 항등 연산자 `===` 를 사용한다.
+
+- `arr.indexOf(item, from)` : 인덱스 `from`부터 시작해 `item(요소)`을 찾는다. 요소를 발견하면 해당 요소의 인덱스를 반환하고, 발견하지 못했으면 `-1`을 반환.
+
+- `arr.lastIndexOf(item, from)`:  indexOf랑 동일하나, 검색을 끝에서부터 시작한다는 점만 다름.
+
+- `arr.includes(item, from)` :  인덱스 `from`부터 시작해 `item`이 있는지를 검색하는데, 해당하는 요소를 발견하면 `true`를 반환, 없으면 `false` 를 반환. (인덱스는 중요치않고 배열에 해당 원소의 존재 유무만 중요할 때 사용)
+
+#### find, findIndex
+
+객체로 구성된 배열에서, 특정 조건에 부합하는 객체를 찾으려면? **find** 와 **findIndex** 메서드가 있다.
+
+```js
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+let user = users.find(item => item.id == 1); // {id: 1, name: "John"}
+console.log(user.name); // John
+```
+
+findIndex는 인덱스를 반환, 조건에 맞는 요소가 없으면 `-1` 반환.
+
+#### filter
+
+위의 메서드들은 다 조건에 맞는 첫번째 요소를 반환하는데, 조건에 맞는 요소가 여러개라면 fiilter을 사용하면 된다. filter은 find와 문법이 유사하지만, 조건에 맞는 **요소 전체를 담은 배열**을 반환한다.
+
+```js
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+// 앞쪽 사용자 두 명을 반환
+let someUsers = users.filter(item => item.id < 3);
+
+alert(someUsers.length); // 2
+```
+
+### 배열 변형하기
+
+#### map
+
+배열 요소 전체를 대상으로 함수를 호출하고, 함수 호출 결과를 새로운 배열로 반환.
+
+#### sort
+
+무조건 사전편집 순으로 요소(숫자,문자열,객체...)를 정렬함에 주의. 원하는 대로 정렬하려면 기준을 넘겨주어야 한다.
+
+```js
+// 정렬 함수에서 첫번째 인수가 두번째 인수보다 크다면 양수반환, 아니라면 음수반환 해주면 됨.
+// compareNumeric은 오름차순 정렬
+function compareNumeric(a, b) {
+  if (a > b) return 1;
+  if (a == b) return 0;
+  if (a < b) return -1;
+}
+
+function compare(a,b) {
+  // a가 b보다 작으면 음수반환 (b가 먼저 옴), a가 b보다 크면 양수 반환 (a가 먼저 옴)
+  // 얘도 오름차순 정렬
+  return a-b;
+}
+
+let arr = [ 1, 2, 15 ];
+
+arr.sort(compareNumeric);
+
+alert(arr);  // 1, 2, 15
+```
+
+#### reverse
+
+원본 배열을 역순으로 정렬해서 반환함.
+
+#### split, join
+
+split은 문자열을 배열로, join은 배열을 문자열로.
+
+```js
+let str = "test";
+console.log(str.split('')); // t,e,s,t
+let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+let str = arr.join(';');
+console.log(str); // Bilbo;Gandalf;Nazgul
+```
+
+#### reduce
+
+**배열을 기반으로 값 하나를 도출할 때** 사용한다.
+
+
 
 ## 5.6) [Iterables](https://javascript.info/iterable)
 
