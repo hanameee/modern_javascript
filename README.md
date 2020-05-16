@@ -68,13 +68,13 @@
 | 5.6   | [Iterables](https://javascript.info/iterable)                |            |
 | 5.7   | [Map and Set](https://javascript.info/map-set)               |            |
 | 5.8   | [WeakMap and WeakSet](https://javascript.info/weakmap-weakset) |            |
-| 5.9   | [Object.keys, values, entries](https://javascript.info/keys-values-entries) |            |
+| 5.9   | [Object.keys, values, entries](https://javascript.info/keys-values-entries) | 2020.05.16 |
 | 5.10  | [Destructuring assignment](https://javascript.info/destructuring-assignment) |            |
 | 5.11  | [Date and time](https://javascript.info/date)                |            |
 | 5.12  | [JSON methods, toJSON](https://javascript.info/json)         |            |
 
 
-##
+#
 
 ## Part 2 - 브라우저: 문서, 이벤트, 인터페이스
 
@@ -96,13 +96,13 @@
 
 ###2) [Introduction to Events](https://javascript.info/events)
 
-| index | 제목                                                         | 완료 날짜 |
-| ----- | ------------------------------------------------------------ | --------- |
-| 2.1   | [Introduction to browser events](https://javascript.info/introduction-browser-events) |           |
-| 2.2   | [Bubbling and capturing](https://javascript.info/bubbling-and-capturing) |           |
-| 2.3   | [Event delegation](https://javascript.info/event-delegation) |           |
-| 2.4   | [Browser default actions](https://javascript.info/default-browser-action) |           |
-| 2.5   | [Dispatching custom events](https://javascript.info/dispatch-events) |           |
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 2.1   | [Introduction to browser events](https://javascript.info/introduction-browser-events) | 2020.05.16 |
+| 2.2   | [Bubbling and capturing](https://javascript.info/bubbling-and-capturing) |            |
+| 2.3   | [Event delegation](https://javascript.info/event-delegation) |            |
+| 2.4   | [Browser default actions](https://javascript.info/default-browser-action) |            |
+| 2.5   | [Dispatching custom events](https://javascript.info/dispatch-events) |            |
 
 
 

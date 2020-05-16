@@ -300,6 +300,31 @@ console.log(str); // Bilbo;Gandalf;Nazgul
 
 ## 5.9) [Object.keys, values, entries](https://javascript.info/keys-values-entries)
 
+### 객체에 사용하는 메서드들
+
+- Object.keys(obj) - 키가 담긴 배열을 반환
+- Object.values(obj) - 값이 담긴 배열을 반환
+- Object.entries(obj) - [key,value] 쌍이 담긴 배열을 반환
+
+```js
+let user = {
+  name: "John",
+  age: 30
+};
+
+Object.keys(user) // ["name", "age"]
+Object.values(user) // ["John", 30]
+Object.entries(user) // [ ["name","John"], ["age",30] ]
+```
+
+### 객체 변환하기
+
+`Object.entries` 와 `Object.fromEntries` 를 사용하면 객체애도 배열 전용 메서드를 사용할 수 있다.
+
+1. `Object.entries(obj)` 를 사용해 객체의 키-값 쌍을 요소로 갖는 배열을 얻는다
+2. 1에서 만든 배열에 map, filter 등의 배열 전용 메서드를 적용한다.
+3. 2에서 반환된 배열에 `Object.fromEntries(array)` 를 적용해 배열을 다시 객체로 되돌린다.
+
 
 
 ## 5.10) [Destructuring assignment](https://javascript.info/destructuring-assignment)
