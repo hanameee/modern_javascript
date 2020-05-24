@@ -284,6 +284,62 @@ console.log(str); // Bilbo;Gandalf;Nazgul
 
 **배열을 기반으로 값 하나를 도출할 때** 사용한다.
 
+```js
+let value = arr.reduce(function(acc,item,index,array){
+  // ...
+},[initial])
+```
+
+`acc` = 이전 함수 호출의 결과
+
+`item` = 현재 배열 요소
+
+`index` = 요소의 위치
+
+`array` = 배열
+
+초깃값은 옵션이지만, 반드시 명시하는 것이 좋다.
+
+### Array.isArray로 배열 여부 알아내기
+
+자바스크립트에서 배열은 객체형에 속하기에 `typeof 배열 = object` 이다.
+
+따라서 **Array.isArray(value)** 를 사용하면 value가 array인지 (return 값 true) 아닌지를 파악할 수 있다.
+
+### 배열 메서드와 thisArg
+
+함수를 호출하는 대부분의 배열 메서드 (find, filter, map 등... sort 제외) **thisArg**라는 매개변수를 옵션으로 받을 수 있다.
+
+```js
+// thisArg는 선택적으로 사용할 수 있는 마지막 인수
+arr.find(func, thisArg);
+arr.filter(func, thisArg);
+arr.map(func, thisArg);
+```
+
+**thisArg** 는 func의 this 역할을 한다.
+
+```js
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+  }
+};
+
+let users = [
+  {age: 16},
+  {age: 20},
+  {age: 23},
+  {age: 30}
+];
+
+let soldiers = users.filter(army.canJoin, army)
+```
+
+만약 thisArgs로 army를 넘겨주지 않았다면, army.canJoin은 단독 함수처럼 취급되고 함수 본문 내 this는 undefined가 되어 에러가 발생했을 것이다.
+
 
 
 ## 5.6) [Iterables](https://javascript.info/iterable)
