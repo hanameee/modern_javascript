@@ -338,7 +338,74 @@ Rabbit.prototype = {
 
 ## 8.3) [Native prototypes](https://javascript.info/native-prototypes)
 
+### Object.prototype
 
+Object는 내장 객체 생성자 함수인데, Object.prototype은 toString을 비롯해 다양한 메서드가 구현되어 있는 거대한 객체를 참조한다.
+
+<img src="8-Prototypes, inheritance.assets/image-20200527153555408.png" alt="image-20200527153555408" style="zoom:50%;" />
+
+`new Object()` 또는 리터럴 문법으로 객체를 만들면, 만들어진 객체의 [[Prototype]] 은 **Object.prototype**을 참조한다.
+
+따라서 만들어진 자식 객체(obj)들은 obj.toString() 처럼 Object.prototype의 메서드들을 가져와 활용할 수 있다.
+
+### 다른 내장 프로토타입
+
+Array, Date, Function 등의 내장 객체들 역시 프로토타입에 메서드를 저장해 놓는다.
+
+예를 들어, 배열 `[1,2,3]` 을 만들면 기본 new Array() 생성자가 내부에서 사용되기에 Array.prototype이 배열 `[1,2,3]` 의 프로토타입이 된다. 따라서 배열 `[1,2,3]` 은 Array.prototype의 배열 메서드를 활용할 수 있다.
+
+모든 내장 프로토타입들의 꼭대기에는 Object.prototype이 있다. 아래의 그림과 같다.
+
+<img src="8-Prototypes, inheritance.assets/image-20200527124554882.png" alt="image-20200527124554882" style="zoom:50%;" />
+
+**Object.prototype은 모든 프로토타입 체인의 끝**으로 Object.prototype의 [[Prototype]] 은 null이다.
+
+```js
+let arr = [1, 2, 3];
+
+// arr은 Array.prototype을 상속받음
+alert( arr.__proto__ === Array.prototype ); // true
+
+// arr은 Object.prototype을 상속받음
+alert( arr.__proto__.__proto__ === Object.prototype ); // true
+
+// 체인 맨 위엔 null이 있음
+alert( arr.__proto__.__proto__.__proto__ ); // null
+```
+
+체인 상의 프로토타입엔 중복 메서드가 있을 수 있는데, 이 때는 **체인 상에서 더 가까운 메서드가 사용**된다.
+
+`console.dir` 을 사용하면 내장 객체의 상속 관계를 확인할 수 있다.
+
+### 원시값
+
+문자열, 숫자, 불린값 등의 원시값은 객체가 아니다. 이런 원시값들의 프로퍼티에 접근하려고 하면 내장 생성자 `String`, `Number`, `Boolean`을 사용하는 임시 래퍼 객체가 생성된다. 임시 래퍼 객체는 이런 메서드를 제공하고 난 후에 사라진다.
+
+각 자료형에 해당하는 래퍼 객체의 메서드는  `String.prototype`, `Number.prototype`, `Boolean.prototype` 과 같이 프로토타입 안에 구현되어 있다.
+
+### 네이티브 프로토타입 변경
+
+ `String.prototype` 과 같은 네이티브 프로토타입에 메서드를 하나 추가하면, 모든 문자열에서 해당 메서드를 사용할 수 있다. 그러나 이렇게 네이티브 프로토타입을 직접 수정하는 것은 바람직하지 않으며, 허용되는 경우는 오직 폴리필을 직접 구현해 내장 프로토타입에 추가할 때만이다.
+
+### 프로토타입에서 빌려오기
+
+네이티브 프로토타입에 구현된 메서드를 빌려서 사용할 수 있다.
+
+예를 들어, 유사 배열 객체에 Array.prototype의 메서드를 빌려서 쓸 수 있다.
+
+```js
+let obj = {
+  0: "Hello",
+  1: "world!",
+  length: 2,
+};
+
+obj.join = Array.prototype.join;
+// 배열의 내장 메서드 join의 내부 알고리즘은 제대로 된 인덱스, length 프로퍼티만 확인한다.
+alert( obj.join(',') ); // Hello,world!
+```
+
+위처럼 메서드를 지정해서 빌려올 수도 있고, `obj.__proto__`를 `Array.prototype`로 설정해 모든 Array 메서드를 사용할 수도 있다.
 
 ## 8.4) [Prototype methods, objects without \__proto__](https://javascript.info/prototype-methods)
 
