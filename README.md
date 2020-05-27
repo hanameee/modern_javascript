@@ -73,8 +73,41 @@
 | 5.11  | [Date and time](https://javascript.info/date)                |            |
 | 5.12  | [JSON methods, toJSON](https://javascript.info/json)         |            |
 
+### 6) [Advanced working with functions](https://javascript.info/advanced-functions)
 
-#
+| index | 제목                                                         | 완료 날짜 |
+| ----- | ------------------------------------------------------------ | --------- |
+| 6.1   | [Recursion and stack](https://javascript.info/recursion)     |           |
+| 6.2   | [Rest parameters and spread syntax](https://javascript.info/rest-parameters-spread) |           |
+| 6.3   | [Variable scope](https://javascript.info/closure)            |           |
+| 6.4   | [The old "var"](https://javascript.info/var)                 |           |
+| 6.5   | [Global object](https://javascript.info/global-object)       |           |
+| 6.6   | [Function object, NFE](https://javascript.info/function-object) |           |
+| 6.7   | [The "new Function" syntax](https://javascript.info/new-function) |           |
+| 6.8   | [Scheduling: setTimeout and setInterval](https://javascript.info/settimeout-setinterval) |           |
+| 6.9   | [Decorators and forwarding, call/apply](https://javascript.info/call-apply-decorators) |           |
+| 6.10  | [Function binding](https://javascript.info/bind)             |           |
+| 6.11  | [Arrow functions revisited](https://javascript.info/arrow-functions) |           |
+
+### 7) [Object properties configuration](https://javascript.info/object-properties)
+
+| index | 제목                                                         | 완료 날짜 |
+| ----- | ------------------------------------------------------------ | --------- |
+| 7.1   | [Property flags and descriptors](https://javascript.info/property-descriptors) |           |
+| 7.2   | [Property getters and setters](https://javascript.info/property-accessors) |           |
+
+### 8) [Prototypes, inheritance](https://javascript.info/prototypes)
+
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 8.1   | [Prototypal inheritance](https://javascript.info/prototype-inheritance) | 2020.05.26 |
+| 8.2   | [F.prototype](https://javascript.info/function-prototype)    | 2020.05.27 |
+| 8.3   | [Native prototypes](https://javascript.info/native-prototypes) |            |
+| 8.4   | [Prototype methods, objects without \__proto__](https://javascript.info/prototype-methods) |            |
+
+
+### 
+
 
 ## Part 2 - 브라우저: 문서, 이벤트, 인터페이스
 
