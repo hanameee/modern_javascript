@@ -192,6 +192,8 @@ for(let prop in rabbit) alert(prop); // jumps, eats
 
 또, obj.hasOwnProperty(key) 는 상속 프로퍼티가 아니라 obj에 직접 구현되어 있는 프로퍼티일 때 true를 반환한다.
 
++) 정리하자면,  `Object.keys`를 비롯하여 객체의 프로퍼티를 반환하는 메서드들은 객체가 ‘직접 소유한’ 프로퍼티만 반환한다. 상속 프로퍼티는 `for..in`을 사용해 얻을 수 있다.
+
 #### obj.hasOwnProperty(key) 응용
 
 ```js
@@ -407,5 +409,79 @@ alert( obj.join(',') ); // Hello,world!
 
 위처럼 메서드를 지정해서 빌려올 수도 있고, `obj.__proto__`를 `Array.prototype`로 설정해 모든 Array 메서드를 사용할 수도 있다.
 
+
+
 ## 8.4) [Prototype methods, objects without \__proto__](https://javascript.info/prototype-methods)
 
+`__proto__` 는 다소 구식이다. 아래와 같은 모던한 메서드들을 사용하는 것이 좋다.
+
+- Object.create(proto[, descriptors]) - [[Prototype]] 이 proto 를 참조하는 빈 객체를 만든다.
+- Object.getPrototypeOf(obj) - obj의 [[Prototype]] 을 반환한다.
+- Object.setPrototypeOf(obj, proto) - obj의 [[Prototype]] 이 proto 가 되도록 설정한다.
+
+```js
+let animal = {
+  eats: true
+}
+
+// 프로토타입이 animal인 새로운 객체를 생성한다
+let rabbit = Object.create(animal);
+
+console.log(rabbit.eats); // true
+
+console.log(Object.getPrototypeOf(rabbit) === animal); // true
+
+Object.setPrototypeOf(rabbit, {}) // rabbit의 prototype을 {} 로 바꾼다.
+```
+
+Object.create 에는 프로퍼티 설명자를 선택적으로 전달할 수 있다.
+
+```js
+let animal = {
+  eats: true
+};
+
+let rabbit = Object.create(animal, {
+  jumps: {
+    value: true
+  }
+})
+
+console.log(rabbit.jumps) // true
+```
+
+Object.create를 호출하면, for in 을 통해 프로퍼티를 복사하는 것보다 더 효과적으로 얕은 사본을 만들어낼 수 있다.
+
+```js
+// obj와 완벽하게 동일한 얕은 사본
+let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
+```
+
+ `obj`의 모든 프로퍼티를 포함한 완벽한 사본이 만들어진다. 사본엔 `[[Prototype]]` 을 비롯한 열거 가능한 프로퍼티와 불가능한 프로퍼티, 데이터 프로퍼티, getter, setter 등 모든 프로퍼티가 복제된다. 
+
+⚠️ 주의할 점: 가급적 객체를 생성할 때만 `[[Prototype]]` 을 설정하고, 이후에는 프로토타입을 바꾸지 않는 것이 좋다. 프로토타입을 그때 그때 바꾸면 객체 프로퍼티 접근 관련 최적화를 망치기 때문!
+
+### '아주 단순한' 객체
+
+객체는 키-값 쌍을 저장할 수 있는 자료구조다. 그런데, `__proto__` 는 키로 사용할 수 없음!
+
+해결 방법 1) 객체 대신 map을 사용한다
+해결 방법 2) `Object.create(null)`을 사용해 프로토타입이 없는 빈 객체를 만든다
+
+ `__proto__`는 객체의 프로퍼티가 아니라 `Object.prototype`의 접근자 프로퍼티이기 때문에, Object.prototype을 상속받지 않으면 된다.
+
+`Object.create(null)`로 객체를 만들면 `__proto__` getter와 setter를 상속받지 않고, 이제 `__proto__`는 평범한 데이터 프로퍼티처럼 처리된다.
+
+이런 객체를  ‘아주 단순한(very plain)’ 혹은 ‘순수 사전식(pure dictionary)’ 객체라고 부른다.
+
+이런 객체는 `toString` 과 같은 내장 메서드가 없다는 단점이 있지만, 객체 관련 메서드 대부분은 Object.prototype이 아니라 Object.something(...) 에 있기 때문에 사용할 수 있다.
+
+```js
+let chineseDictionary = Object.create(null);
+chineseDictionary.hello = "你好";
+chineseDictionary.bye = "再见";
+
+console.log(Object.keys(chineseDictionary)); // hello,bye
+```
+
+이처럼 아주 단순한 객체는 순수 사전처럼 사용되며, `__proto__` 를 키로 사용해도 문제를 일으키지 않는다.

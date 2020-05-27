@@ -91,10 +91,10 @@
 
 ### 7) [Object properties configuration](https://javascript.info/object-properties)
 
-| index | 제목                                                         | 완료 날짜 |
-| ----- | ------------------------------------------------------------ | --------- |
-| 7.1   | [Property flags and descriptors](https://javascript.info/property-descriptors) |           |
-| 7.2   | [Property getters and setters](https://javascript.info/property-accessors) |           |
+| index | 제목                                                         | 완료 날짜  |
+| ----- | ------------------------------------------------------------ | ---------- |
+| 7.1   | [Property flags and descriptors](https://javascript.info/property-descriptors) | 2020.05.27 |
+| 7.2   | [Property getters and setters](https://javascript.info/property-accessors) | 2020.05.27 |
 
 ### 8) [Prototypes, inheritance](https://javascript.info/prototypes)
 
@@ -103,7 +103,7 @@
 | 8.1   | [Prototypal inheritance](https://javascript.info/prototype-inheritance) | 2020.05.26 |
 | 8.2   | [F.prototype](https://javascript.info/function-prototype)    | 2020.05.27 |
 | 8.3   | [Native prototypes](https://javascript.info/native-prototypes) | 2020.05.27 |
-| 8.4   | [Prototype methods, objects without \__proto__](https://javascript.info/prototype-methods) |            |
+| 8.4   | [Prototype methods, objects without \__proto__](https://javascript.info/prototype-methods) | 2020.05.27 |
 
 
 ### 
