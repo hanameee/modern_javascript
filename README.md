@@ -66,7 +66,7 @@
 | 5.4   | [Arrays](https://javascript.info/array)                      | 2020.05.10 |
 | 5.5   | [Array methods](https://javascript.info/array-methods)       | 2020.05.14 |
 | 5.6   | [Iterables](https://javascript.info/iterable)                |            |
-| 5.7   | [Map and Set](https://javascript.info/map-set)               |            |
+| 5.7   | [Map and Set](https://javascript.info/map-set)               | 2020.05.28 |
 | 5.8   | [WeakMap and WeakSet](https://javascript.info/weakmap-weakset) |            |
 | 5.9   | [Object.keys, values, entries](https://javascript.info/keys-values-entries) | 2020.05.16 |
 | 5.10  | [Destructuring assignment](https://javascript.info/destructuring-assignment) |            |

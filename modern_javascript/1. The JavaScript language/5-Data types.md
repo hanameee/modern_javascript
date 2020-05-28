@@ -348,7 +348,201 @@ let soldiers = users.filter(army.canJoin, army)
 
 ## 5.7) [Map and Set](https://javascript.info/map-set)
 
+자바스크립트에는 객체, 배열 외에도 맵(Map)과 셋(Set) 자료구조가 존재한다.
 
+### Map
+
+맵은 키가 있는 데이터를 저장한다는 점에서 객체와 유사하나, **맵은 키에 다양한 자료형을 허용**한다는 점에서 차이가 있음.
+
+맵에는 다음과 같은 주요 메서드와 프로퍼티가 있음.
+
+- `new Map()` : map 생성
+- `map.set(key,value)` : key를 이용해 value를 저장
+- `map.get(key)` : key에 해당하는 값을 반환. key가 존재하지 않으면 undefined를 반환
+- `map.has(key)` : key가 존재하면 true, 존재하지 않으면 false를 반환
+- `map.delete(key)` : key에 해당하는 값을 삭제
+- `map.clear()` : map 안의 모든 요소 제거
+- `map.size` : 요소의 개수 반환
+
+
+
+[주의할 점]
+
+`map[key]` 는 Map을 쓰는 올바른 방법이 아니다.
+
+map[key] = value 로 사용할 수 있긴 하나, 이는 Map을 일반 객체처럼 취급해 여러 제약을 만들게 된다. `map` 을 사용할 땐 **map 전용 메서드인 set, get 등을 사용**해야만 한다.
+
+[예시]
+
+```js
+let map = new Map();
+
+map.set("1","str1") // 문자형 키
+map.set(1,'num1') // 숫자형 키
+map.set(true, 'bool1') // 불린형 키
+
+console.log(map.get(1)) // 'num1'
+console.log(map.get("1")) // 'str1'
+console.log(map.size) // 3
+```
+
+객체는 키를 문자형으로 자동 변환하지만, 맵은 객체와 달리 키를 문자형으로 변환하지 않는다. 즉, **키에 자료형의 제한이 없다.**
+
+맵은 **객체 자료형도 키로 사용**할 수 있다.
+
+```js
+let john = {name : "John"};
+let visitsCountMap = new Map();
+visitsCountMap.set(john, 123);
+console.log(visitsCountMap.get(john)); // 123
+```
+
+만약 객체에 객체형 키를 사용하려고 한다면, 키가 자동으로 문자형으로 변환되기 때문에 `"[object Object]"` 를 키로 사용해야 한다. 
+
+[체이닝]
+
+`map.set` 을 호출할 때마다 맵 자신이 반환된다. 이를 이용하면 `map.set` 을 체이닝 할 수 있다.
+
+```js
+map.set('1', 'str1')
+  .set(1, 'num1')
+  .set(true, 'bool1');
+```
+
+#### 맵의 요소에 반복 작업하기
+
+다음 메서드들을 사용해 맵의 각 요소에 반복 작업을 할 수 있다.
+
+- `map.keys()` : 각 요소의 **키를 모은 iterable 객체를 반환**한다.
+- `map.values()` : 각 요소의 **값을 모은 iterable 객체를 반환**한다.
+- `map.entries()` : 각 요소의 **[키,값] 을 한 쌍으로 하는 iterable 객체를 반환**한다. 이 이터러블 객체는 for..of 반복문의 default 값으로 쓰인다. 
+
+```js
+let recipeMap = new Map({
+  ['cucumber', 500],
+  ['tomatoes', 350],
+  ['onion',    50]
+]);
+
+// key를 대상으로 순회
+for (let vegetable of recipeMap.keys()){
+    console.log(vegetable) // cucumber, tomatoes, onion
+}
+
+// value를 대상으로 순회
+for (let amout of recipeMap.values()) {
+    console.log(amount) // 500, 350, 50
+}
+
+// [key,value]를 대상으로 순회
+for (let entry of recipeMap) { // for...of 에서 recipeMap.entries() 와 동일하게 작동한다
+    console.log(entry) // ["cucumber", 500], ["tomatoes", 350], ["onion", 50]
+}
+```
+
+객체가 프로퍼티 순서를 보장하지 않는 것과는 달리, **맵은 값이 삽입된 순서대로 순회를 실시**한다.
+
+맵은 배열과 유사하게 `forEach` 도 지원한다.
+
+```js
+// forEach 의 callback 이 넘겨받는 인자는 요소의 value, 요소의 key, 사용될 Map 객체이다
+recipeMap.forEach((value,key,map) => {
+    console.log(`${key} : ${value}`);
+})
+```
+
+#### Object.entries: 객체를 맵으로 바꾸기
+
+각 요소가 key-value 쌍인 배열이나 이터러블 객체를 초기화 용도로 맵에 전달해 새로운 맵을 만들 수 있다.
+
+```js
+// 각 요소가 [키, 값] 쌍인 배열
+let map = new Map([
+  ["1", "str1"],
+  [1, 'num1'],
+  [true, 'bool1']
+])
+
+console.log(map.get('1')); // str1
+```
+
+평범한 객체를 가지고 맵을 만드려면 Object.entries(obj) 를 활용해야 한다. 이 메서드는 **객체의 키-값 쌍을 [key,value] 로 가지는 배열을 반환**한다.
+
+```js
+let obj = {
+  name: "John",
+  age: 30
+};
+
+let map = new Map(Object.entries(obj));
+
+alert( map.get('name') ); // John
+```
+
+#### Object.fromEntries: 맵을 객체로 바꾸기
+
+Object.fromEntries 를 사용하면 **각 요소가 [키, 값] 쌍인 배열을 객체**로 바꿔준다.
+
+```js
+let prices = Object.fromEntries([
+  ['banana', 1],
+  ['orange', 2],
+  ['meat', 4]
+]);
+
+// prices 는 이제 { banana: 1, orange: 2, meat: 4 } 인 객체이다
+
+console.log(prices.orange); // 2
+```
+
+map.entries() 로 맵의 [키,값] 을 요소로 가지는 배열을 반환하고, 해당 배열을 Object.fromEntries 로 변환하는 것으로 맵을 객체로 바꿀 수 있다.
+
+```js
+let obj = Object.fromEntries(map.entries());
+// let obj = Object.fromEntries(map); 으로 entries를 생략해도 됨.
+```
+
+`Object.fromEntries` 는 인수로 이터러블 객체를 받기 때문에 궂이 entries 를 안넘겨줘도 됨.
+
+### Set
+
+셋(Set)은 중복을 허용하지 않는 값을 모아놓은 특별한 컬렉션이다. 셋에는 키가 없는 값이 저장된다.
+
+주요 메서드/프로퍼티는 다음과 같다.
+
+- `new Set(iterable)` : 셋을 만든다. 이터러블 객체(주로 배열)를 전달받아 그 안의 값을 복사해서 셋에 넣어준다.
+- `set.add(value)` : 값을 추가하고 셋 자신을 반환한다.
+- `set.delete(value)` : 값을 제거한다. 값이 존재해서 제거에 성공하면 true, 아니면 false 를 반환한다.
+- `set.has(value)` : 셋 내에 값이 존재하면 true, 아니면 false 를 반환한다.
+- `set.clear()` : 셋을 비운다.
+- `set.size` :  셋에 몇개의 값이 있는지 세준다.
+
+셋은 중복을 허용하지 않는다. 따라서 셋 내 동일한 value가 있다면 set.add(value)를 아무리 호출해도 아무런 반응이 없다. 
+
+**셋은 값의 유일무이함을 확인하는데 최적화**되어있기에 arr.find 보다 성능이 효율적이다.
+
+#### 셋의 값에 반복 작업하기
+
+`for..of`나 `forEach`를 사용하면 셋의 값을 대상으로 반복 작업을 수행할 수 있다.
+
+```javascript
+let set = new Set(["oranges", "apples", "bananas"]);
+
+for (let value of set) alert(value);
+
+// forEach를 사용해도 동일하게 동작한다.
+set.forEach((value, valueAgain, set) => {
+  alert(value);
+});
+```
+
+forEach 의 콜백함수의 두번째 인자로 value와 같은 값을 또 받는 것은 맵과의 호환성 때문이다. (맵을 셋으로, 셋을 맵으로 쉽게 교체할 수 있게 하기 위해서)
+
+또한, 맵과 유사하게 다음 메서드들을 사용해 셋의 각 요소에 반복 작업을 할 수 있다.
+
+- `set.keys()` : 셋 내의 모든 **값을 포함하는 iterable 객체를 반환**한다.
+- `set.values()` : set.keys와 동일한 작업을 하며, 맵과의 호환성을 위해 만들어졌다.
+- `set.entries()` : 셋 내의 각 값을 이용해 만든 **[값,값] 을 한 쌍으로 하는 iterable 객체를 반환**한다. 역시 맵과의 호환성을 위해 만들어졌다.
 
 ## 5.8) [WeakMap and WeakSet](https://javascript.info/weakmap-weakset)
 
