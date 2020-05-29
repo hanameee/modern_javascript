@@ -12,9 +12,12 @@
 ### [🐻 Modern Javascript](https://github.com/hanameee/modern_javascript/tree/master/modern_javascript)
 
 [The Modern JavaScript Tutorial](https://javascript.info/) 를 학습한 내용을 정리합니다.
-일부 챕터, 일부 과제에 대한 제 코드가 해당 챕터 하위의 동명의 폴더에 작성되어 있습니다. 이는 모범 답안이 아니며, 모범 답안은 출처 사이트에 모두 공개되어 있습니다.
 
-- [Part1. The JavaScript language](https://github.com/hanameee/modern_javascript/tree/master/modern_javascript/1_The_JavaScript_language)
+일부 챕터, 일부 과제에 대한 제 코드가 해당 챕터 하위의 동명의 폴더에 작성되어 있습니다.
+
+이는 모범 답안이 아니며, 모범 답안은 출처 사이트에 모두 공개되어 있습니다.
+
+- [**Part1. The JavaScript language**](https://github.com/hanameee/modern_javascript/tree/master/modern_javascript/1_The_JavaScript_language)
    - [1. An introduction](https://github.com/hanameee/modern_javascript/blob/master/modern_javascript/1_The_JavaScript_language/1-An_introduction.md)
    - [2. Javascript Fundamentals](https://github.com/hanameee/modern_javascript/blob/master/modern_javascript/1_The_JavaScript_language/2-Javascript_Fundamentals.md)
    - [3. Code quality](https://github.com/hanameee/modern_javascript/blob/master/modern_javascript/1_The_JavaScript_language/3-Code_quality.md)
@@ -34,18 +37,18 @@
 - **Javascript**
   - [1. 기본 개념과 동작 원리 이해의 중요성](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/1-기본_개념과_동작_원리_이해의_중요성.md)
   - [2. 자바스크립트란](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/2-자바스크립트란.md)
-  - [3. 자바스크립트 개발 환경과 실행 방법.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/3-자바스크립트_개발_환경과_실행_방법.md)
-  - [4. 브라우저 동작 원리.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/4-브라우저_동작_원리.md)
-  - [5. 자바스크립트의 기본 문법.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/5-자바스크립트의_기본_문법.md)
-  - [6. 데이터 타입과 변수.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/6-데이터_타입과_변수.md)
-  - [7. 연산자.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/7-연산자.md)
-  - [9. 타입 변환과 단축 평가.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/9-타입_변환과_단축_평가.md)
-  - [10. 객체.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/10-객체.md)
-  - [11. 객체와 변형불가성.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/11-객체와_변형불가성.md)
-  - [12. 함수.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/12-함수.md)
-  - [13. 타입 체크.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/13-타입_체크.md)
-  - [14. 프로토타입.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/14-프로토타입.md)
-  - [15. 스코프.](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/15-스코프.md)
+  - [3. 자바스크립트 개발 환경과 실행 방법](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/3-자바스크립트_개발_환경과_실행_방법.md)
+  - [4. 브라우저 동작 원리](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/4-브라우저_동작_원리.md)
+  - [5. 자바스크립트의 기본 문법](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/5-자바스크립트의_기본_문법.md)
+  - [6. 데이터 타입과 변수](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/6-데이터_타입과_변수.md)
+  - [7. 연산자](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/7-연산자.md)
+  - [9. 타입 변환과 단축 평가](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/9-타입_변환과_단축_평가.md)
+  - [10. 객체](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/10-객체.md)
+  - [11. 객체와 변형불가성](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/11-객체와_변형불가성.md)
+  - [12. 함수](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/12-함수.md)
+  - [13. 타입 체크](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/13-타입_체크.md)
+  - [14. 프로토타입](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/14-프로토타입.md)
+  - [15. 스코프](https://github.com/hanameee/modern_javascript/blob/master/poiemaweb/15-스코프.md)
 
 ### [🐻 blurry](https://github.com/hanameee/modern_javascript/tree/master/blurry)
 
