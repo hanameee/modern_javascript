@@ -98,6 +98,59 @@ loadScript('/my/script.js', function(error, script) {
 
 ## 11.2) [Promise](https://javascript.info/promise-basics)
 
+### Promise란?
+
+**제작 코드** : 원격에서 스크립트를 불러오는 것 같이, 시간이 걸리는 코드이다.
+
+**소비 코드** : 제작 코드의 결과를 기다렸다가 이를 소비하는 코드. 제작 코드를 소비하는 주체는 여럿이 될 수 있다.
+
+**Promise** : 제작코드와 소비 코드를 연결해 주는 특별한 **자바스크립트 객체**이다. Promise는 시간이 얼마나 걸리든, 제작 코드의 결과가 준비되었을 때 모든 소비 코드가 결과를 사용할 수 있도록 해준다.
+
+#### Promise의 문법
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  // 제작 코드 : executor
+});
+```
+
+`new Promise` 에 전달되는 함수 (executor) 은 `new Promise`가 만들어질 때 자동으로 실행된다.
+
+executor의 인수 `resolve`와 `reject` 는 자바스크립트가 자체적으로 제공하는 콜백으로, 개발자는 이는 신경쓰지 않고 executor 함수만 작성하면 된다.
+
+대신 executor에서는 인수로 넘겨준 콜백 중 하나를 반드시 호출해야 한다.
+
+- resolve(value) - 일이 성공적으로 끝난 경우, 그 결과를 나타내는 value와 함께 호출
+- reject(error) - 에러 발생 시 에러 객체를 나타내는 error과 함께 호출
+
+executor은 new Promise 시 자동으로 실행되는데, 이 executor 안에서 (시간이 걸리는) 일이 처리된다. 처리가 끝나면 executor은 일 처리의 결과게 따라 `resolve` 혹은 `reject` 를 호출한다.
+
+#### Promise의 프로퍼티
+
+`new Promise` 생성자가 반환하는 **promise** 객체는 다음과 같은 내부 프로퍼티를 갖는다.
+
+- state : 처음엔 pending 이었다가, resolve가 호출되면 furfilled, reject가 호출되면 rejected로 변한다.
+- result : 처음엔 undefined 었다가, resolve(value)가 호출되면 value로, reject(error)가 호출되면 error로 변한다.
+
+정리하자면, executor은 아래처럼 promise의 상태를 둘 중 하나로 변화시킨다.
+<img src="11-Promises_async-await.assets/image-20200629223458803.png" alt="image-20200629223458803" style="zoom:50%;" />
+
+#### Promise 예시
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  // Promise 생성자 함수가 실행되면 (promise 객체가 만들어지면) executor 함수는 자동으로 실행됨.
+  // 1초 뒤에 일이 성공적으로 끝났다는 신호가 전달되면서 result가 'done'이 됨.
+  setTimeout(() => resolve("done"), 1000);
+});
+```
+
+1) executor 함수는 new Promise에 의해 즉각적으로 호출된다.
+
+2) executor 함수는 인자로 resolve와 reject를 받고, 이 함수들은 자바스크립트 엔진이 미리 정의한 함수이므로 개발자가 따로 만들 필요가 없다. 다만, **resolve나 reject 중 하나는 반드시 호출**해야 한다.
+
+3) 위 예제에서, executor이 실행된 지 1초 후 resolve(done) 이 호출되고, promise 객체의 상태가 변화한다. (state: fulfilled, result: done)
+
 
 
 ## 11.3) [Promises chaining](https://javascript.info/promise-chaining)
