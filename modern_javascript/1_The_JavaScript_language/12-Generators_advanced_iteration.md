@@ -208,4 +208,177 @@ try {
 
 ## 12.2) [Async iterators and generators](https://javascript.info/async-iterators-generators)
 
+비동기 이터레이터/제너레이터를 사용하면 비동기적으로 들어오는 데이터를 필요에 따라 처리할 수 있다.
 
+### async 이터레이터
+
+일반 이터레이터는 객체이다. 일반 이터레이터를 비동기 이터레이터로 만들기 위해서는 아래와 같은 작업이 필요하다.
+
+1. Symbol.iterator 대신 **Symbol.asyncIterator** 을 사용해야 한다.
+2. next() 는 Promise 를 반환해야 한다.
+3. 비동기 이터러블 객체를 대상으로 하는 반복 작업은 `for await (let item of iterable)` 반복문을 사용해야 한다.
+
+1초마다 비동기적으로 값을 반환하는 range 이터러블 객체를 만들어보자.
+
+```js
+let range = {
+    from: 1,
+    to: 5,
+  	// Symbol.iterator 대신 Symbol.asyncIterator
+    [Symbol.asyncIterator]() {
+        return {
+            current: this.from,
+            last: this.to,
+          	// async에 의해 자동으로 객체는 Promise로 감싸진다
+            async next() {
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                if (this.current <= this.last) {
+                    return { done: false, value: this.current++ };
+                } else {
+                    return { done: true };
+                }
+            },
+        };
+    },
+};
+
+(async () => {
+  	// for await 사용
+    for await (let value of range) {
+        console.log(value);
+    }
+})();
+```
+
+### async 제너레이터
+
+일반 제너레이터는 동기적 문법이지만, async/await를 사용하면 가능하다.
+
+```js
+// 제너레이터 앞에 async를 붙인다
+async function* generateSequence(start, end){
+  for (let i = start; i <= end; i++){
+    // 이제 next()는 비동기적(1초 지연)으로 작동하고, promise를 반환한다.
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    yield i;
+  }
+}
+
+(async () => {
+  let generator = generateSequence(1,5);
+  for await (let value of generator) {
+    console.log(value); // 1,2,3,4,5
+  }
+})
+```
+
+`generator.next()` 를 사용해서 값을 얻을 때도, next가 promise를 반환하기 때문에 아래와 같이 `await` 를 붙여줘야 한다.
+
+```js
+result = await generator.next();
+```
+
+### async 이터러블
+
+반복 가능한 객체를 만들기 위해서는 아래와 같이 객체에 `Symbol.iterator` 을 추가해야 한다. 
+
+```js
+let range = {
+  from: 1,
+  to: 5,
+  [Symbol.iterator]() {
+    return // range를 반복가능하게 만드는 next 메서드가 구현된 객체
+  }
+}
+```
+
+그런데  `Symbol.iterator`는 위 처럼 `next`가 구현된 일반 객체를 반환하는 것보다는, **제너레이터를 반환하도록 구현**하는 경우가 더 많다.
+
+```js
+let range = {
+  from: 1,
+  to: 5,
+  *[Symbol.iterator]() {
+    for(let value = this.from; value <= this.to; value++){
+      yield value;
+    }
+  }
+}
+
+for(let value of range) {
+  console.log(value)
+}
+```
+
+위 상태에서 제너레이터를 비동기적으로 동작하게 하려면, `Symbol.iterator`를 async `Symbol.asyncIterator`로 바꾸고, 호출할 때 async 함수로 감싼 for await (let ... of) 를 사용하면 된다.
+
+```js
+let range = {
+  from: 1,
+  to: 5,
+
+  async *[Symbol.asyncIterator]() {
+    for(let value = this.from; value <= this.to; value++) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      yield value;
+    }
+  }
+};
+
+(async () => {
+  for await (let value of range) {
+    alert(value); // 1, 2, 3, 4, 5
+  }
+})();
+```
+
+### 실제 사용 사례
+
+실무에서 사용할 법한 use case를 알아보자.
+
+많은 온라인 서비스가 페이지네이션을 구현해 데이터를 전송한다. 예를 들어, 클라이언트가 github 커밋 이력을 조회하기 위해 요청을 보내면, 서버는 일정 숫자(예를 들어 30개)의 정보를 담은 JSON과 함께, 다음 페이지에 대한 정보를 Link 헤더에 담아 응답한다. 클라이언트는 이후 더 많은 정보가 필요하면 헤더에 담긴 링크를 이용해 다음 정보를 보내도, 원하는 정보를 얻을 때 까지 이런 과정을 반복한다.
+
+async iterable 객체를 이용해 이와 유사하게 작동하는 API를 만들어 볼 수 있다.
+
+```js
+let repo = "javascript-tutorial/en.javascript.info"; // 커밋 정보를 얻어올 GitHub 레포
+
+async function* fetchCommits(repo) {
+    let url = `https://api.github.com/repos/${repo}/commits`;
+    while (url) {
+        const response = await fetch(url, {
+            headers: { "User-Agent": "Our script" }, // Github은 모든 요청에 user-agent 헤더를 강제함
+        });
+        const body = await response.json(); // 응답은 json 형태로 옴
+        console.log(response.headers);
+        let nextPage = response.headers
+            .get("Link")
+            .match(/<(.*?)>; rel="next"/);
+        nextPage = nextPage?.[1];
+        url = nextPage;
+        for (let commit of body) {
+            yield commit;
+        }
+    }
+}
+
+(async () => {
+    let count = 0;
+    for await (const commit of fetchCommits(repo)) {
+        console.log(commit.author.login);
+        if (++count == 100) {
+            break;
+        }
+    }
+})();
+```
+
+참고로 Postman으로 response header을 보면 Link 헤더가 이런식으로 다음 페이지의 URL을 주는 것을 볼 수 있다.
+
+![image-20200711234021844](12-Generators_advanced_iteration.assets/image-20200711234021844.png)
+
+### 정리
+
+데이터가 비동기적으로 들어오는 경우, 비동기 이터레이터/제너레이터를 사용한다.
+
+용량이 큰 파일을 다운로드하거나 업로드 할 때처럼 띄엄띄엄 들어오는 데이터 스트림을 다룰 때 async 제너레이터를 사용할 수 있다.
